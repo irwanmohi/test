@@ -9,48 +9,6 @@ if [ $USER != 'root' ]; then
 	echo "You must run this as root"
 	exit
 fi
-
-# initialisasi var
-export DEBIAN_FRONTEND=noninteractive
-OS=`uname -m`;
-
-if [[ -e /etc/debian_version ]]; then
-	#OS=debian
-	RCLOCAL='/etc/rc.local'
-else
-	echo "You are not running this script on Debian OS"
-	exit
-fi
-
-vps="vps";
-
-if [[ $vps = "vps" ]]; then
-	source="https://raw.githubusercontent.com/Clrkz/VPSAutoScrptz/master"
-else
-	source="https://raw.githubusercontent.com/Clrkz/VPSAutoScrptz/master"
-fi
-
-# go to root
-cd
-
-MYIP=$(wget -qO- ipv4.icanhazip.com);
-: '
-# check registered ip
-wget -q -O daftarip http://188.166.215.119:85/ocs/ip.txt
-if ! grep -w -q $MYIP daftarip; then
-	echo "Sorry, only registered IPs can use this script!"
-	if [[ $vps = "vps" ]]; then
-		echo "Powered by Clrkz"
-	else
-		echo "Powered by Clrkz"
-	fi
-	rm -f /root/daftarip
-	exit
-fi
-'
-#https://github.com/adenvt/OcsPanels/wiki/tutor-debian
-
-clear
 echo ""
 echo "I need to ask some questions before starting setup"
 echo "You can leave the default option and just hit enter if you agree with the option"
@@ -72,13 +30,13 @@ MYIP=$(wget -qO- ipv4.icanhazip.com);
 MYIP2="s/xxxxxxxxx/$MYIP/g";
 
 #detail nama perusahaan
-country=ID
-state=Manila
-locality=Manila
-organization=ByteHAX
+country=MY
+state=SELANGOR
+locality=SELANGOR
+organization=REGSUB
 organizationalunit=IT
-commonname=bytehax.blogspot.com
-email=143Clarkz@gmail.com
+commonname=REGSUB.CF
+email=irwanmohi@gmail.com
 
 # go to root
 cd
@@ -91,7 +49,7 @@ sed -i '$ i\echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6' /etc/rc.local
 apt-get update;apt-get -y install wget curl;
 
 # set time GMT +7
-ln -fs /usr/share/zoneinfo/Asia/Manila /etc/localtime
+ln -fs /usr/share/zoneinfo/Asia/Kuala_Lumpur /etc/localtime
 
 # set locale
 sed -i 's/AcceptEnv/#AcceptEnv/g' /etc/ssh/sshd_config
