@@ -5,8 +5,8 @@ apt-get install apache2 -y
 apt-get install libssh2-php -y
 service apache2 restart
 apt-get install nginx -y
-apt-get install php5-fpm -y
-apt-get install php5-cli -y
+apt-get install php-fpm -y
+apt-get install php-cli -y
 rm /etc/nginx/sites-enabled/default
 rm /etc/nginx/sites-available/default
 wget -O /etc/nginx/nginx.conf "https://raw.githubusercontent.com/Dreyannz/AutoScriptVPS/master/Files/Nginx/nginx.conf"
@@ -16,4 +16,5 @@ sed -i 's/listen = \/var\/run\/php5-fpm.sock/listen = 127.0.0.1:9000/g' /etc/php
 service php5-fpm restart
 service nginx restart
 cd /home/vps/public_html
-wget https://raw.githubusercontent.com/Dreyannz/VPS_Site/master/Version%202.0/index.php
+wget https://raw.githubusercontent.com/Dreyannz/VPS_Site/master/Version%201.0/index.php
+wget --quiet https://raw.githubusercontent.com/Dreyannz/VPS_Site/master/Version%201.0/v1_server_details.php
