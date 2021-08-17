@@ -54,7 +54,7 @@ apt-get update; apt-get -y upgrade;
 
 # install webserver extensions
 apt-get -y install nginx
-apt-get -y install php7.0-fpm php7.0-cli libssh2-1 php-ssh2 php7.0
+apt-get -y install php7.3-fpm php7.3-cli libssh2-1 php-ssh2 php7.3
 
 # install essential package
 apt-get -y install nano iptables-persistent dnsutils screen whois ngrep unzip unrar tar unzip zip certbot
@@ -80,9 +80,9 @@ wget -O /etc/nginx/conf.d/vps.conf "https://raw.githubusercontent.com/lanundarat
 wget -O /etc/nginx/conf.d/monitoring.conf "https://raw.githubusercontent.com/lanundarat87/xxx/main/Res/Other/monitoring.conf"
 mkdir -p /home/vps/public_html
 wget -O /home/vps/public_html/index.php "https://raw.githubusercontent.com/lanundarat87/xxx/main/Res/Panel/index.php"
-sed -i 's/listen = \/run\/php\/php7.0-fpm.sock/listen = 127.0.0.1:9000/g' /etc/php/7.0/fpm/pool.d/www.conf
+sed -i 's/listen = \/run\/php\/php7.3-fpm.sock/listen = 127.0.0.1:9000/g' /etc/php/7.3/fpm/pool.d/www.conf
 sed -i $MYIP2 /home/vps/public_html/index.php;
-service php7.0-fpm restart
+service php7.3-fpm restart
 service nginx restart
 
 # install openvpn
@@ -234,20 +234,20 @@ sed -i $MYIP2 /etc/squid/squid.conf;
 service squid restart
 
 # V2-ui Panel Setup
-#wget -O /usr/local/v2-ui-linux.tar.gz "https://www.dropbox.com/s/6yoi0gn1vcx6na9/v2-ui-linux.tar.gz"
-#cd /usr/local/
-#tar zxvf v2-ui-linux.tar.gz
-#rm v2-ui-linux.tar.gz -f
-#cd v2-ui
-#chmod +x v2-ui bin/v2ray-v2-ui bin/v2ctl
-#cp -f v2-ui.service /etc/systemd/system/
+wget -O /usr/local/v2-ui-linux.tar.gz "https://www.dropbox.com/s/6yoi0gn1vcx6na9/v2-ui-linux.tar.gz"
+cd /usr/local/
+tar zxvf v2-ui-linux.tar.gz
+rm v2-ui-linux.tar.gz -f
+cd v2-ui
+chmod +x v2-ui bin/v2ray-v2-ui bin/v2ctl
+cp -f v2-ui.service /etc/systemd/system/
 cd
 
 # Start V2-ui 
-#systemctl daemon-reload
-#systemctl start v2-ui
-#systemctl enable v2-ui
-#systemctl status --no-pager v2-ui
+systemctl daemon-reload
+systemctl start v2-ui
+systemctl enable v2-ui
+systemctl status --no-pager v2-ui
 
 # Install PPTPVPN
 wget https://raw.githubusercontent.com/lanundarat87/xxx/main/Res/Other/install.sh
@@ -415,7 +415,7 @@ chown -R www-data:www-data /home/vps/public_html
 /etc/init.d/dropbear restart
 /etc/init.d/fail2ban restart
 /etc/init.d/stunnel4 restart
-service php7.0-fpm restart
+service php7.3-fpm restart
 service uwsgi restart
 systemctl daemon-reload
 systemctl restart v2-ui
