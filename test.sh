@@ -165,7 +165,7 @@ echo 1 > /proc/sys/net/ipv4/ip_forward
 sed -i 's|#net.ipv4.ip_forward=1|net.ipv4.ip_forward=1|' /etc/sysctl.conf
 
 # OpenVPN monitoring
-apt-get install -y gcc libgeoip-dev python-virtualenv python-dev geoip-database-extra uwsgi uwsgi-plugin-python
+apt-get install -y gcc libgeoip-dev python3-virtualenv python3-dev geoip-database-extra uwsgi uwsgi-plugin-python3
 wget -O /srv/openvpn-monitor.tar "https://raw.githubusercontent.com/lanundarat87/xxx/main/Res/Panel/openvpn-monitor.tar"
 cd /srv
 tar xf openvpn-monitor.tar
