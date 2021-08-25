@@ -54,7 +54,7 @@ apt-get update; apt-get -y upgrade;
 
 # install webserver extensions
 apt-get -y install nginx
-apt-get -y install php7.3-fpm php7.3-cli libssh2-1 php-ssh2 php7.3
+apt-get -y install php-fpm php-cli libssh2-1 php-ssh2 php
 
 # install essential package
 apt-get -y install nano iptables-persistent dnsutils screen whois ngrep unzip unrar tar unzip zip certbot
@@ -80,9 +80,9 @@ wget -O /etc/nginx/conf.d/vps.conf "https://raw.githubusercontent.com/lanundarat
 wget -O /etc/nginx/conf.d/monitoring.conf "https://raw.githubusercontent.com/lanundarat87/xxx/main/Res/Other/monitoring.conf"
 mkdir -p /home/vps/public_html
 wget -O /home/vps/public_html/index.php "https://raw.githubusercontent.com/lanundarat87/xxx/main/Res/Panel/index.php"
-sed -i 's/listen = \/run\/php\/php7.3-fpm.sock/listen = 127.0.0.1:9000/g' /etc/php/7.3/fpm/pool.d/www.conf
+sed -i 's/listen = \/run\/php\/php7.4-fpm.sock/listen = 127.0.0.1:9000/g' /etc/php/7.4/fpm/pool.d/www.conf
 sed -i $MYIP2 /home/vps/public_html/index.php;
-service php7.3-fpm restart
+service php7.4-fpm restart
 service nginx restart
 
 # install openvpn
@@ -415,7 +415,7 @@ chown -R www-data:www-data /home/vps/public_html
 /etc/init.d/dropbear restart
 /etc/init.d/fail2ban restart
 /etc/init.d/stunnel4 restart
-service php7.3-fpm restart
+service php7.4-fpm restart
 service uwsgi restart
 systemctl daemon-reload
 systemctl restart v2-ui
