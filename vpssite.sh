@@ -31,16 +31,16 @@ sleep 3
 apt-get update > /dev/null 2>1;
 apt-get install nginx -y > /dev/null 2>1;
 apt-get install libssh2-php -y > /dev/null 2>1;
-apt-get install php5-fpm -y > /dev/null 2>1;
-apt-get install php5-cli -y > /dev/null 2>1;
+apt-get install php-fpm -y > /dev/null 2>1;
+apt-get install php-cli -y > /dev/null 2>1;
 
 rm /etc/nginx/sites-enabled/default
 rm /etc/nginx/sites-available/default
 wget  --quiet -O /etc/nginx/nginx.conf "https://raw.githubusercontent.com/Dreyannz/AutoScriptVPS/master/Files/Nginx/nginx.conf"
 mkdir -p /home/vps/public_html
 wget  --quiet -O /etc/nginx/conf.d/vps.conf "https://raw.githubusercontent.com/Dreyannz/AutoScriptVPS/master/Files/Nginx/vps.conf"
-sed -i 's/listen = \/var\/run\/php5-fpm.sock/listen = 127.0.0.1:9000/g' /etc/php5/fpm/pool.d/www.conf
-service php5-fpm restart
+sed -i 's/listen = \/var\/run\/php7.4-fpm.sock/listen = 127.0.0.1:9000/g' /etc/php/7.4/fpm/pool.d/www.conf
+service php7.4-fpm restart
 service nginx restart
 case $Version in
 	1)
